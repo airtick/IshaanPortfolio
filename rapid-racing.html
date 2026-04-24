@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rapid Racing — Ishaan Nair</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cream: #f5f1eb;
+        --cream2: #ede9e2;
+        --black: #141414;
+        --gray: #888;
+        --lgray: #d8d4ce;
+        --accent: #c96a3a;
+        --blue: #3d6fce;
+        --serif: "Instrument Serif", serif;
+        --sans: "DM Sans", sans-serif;
+        --mono: "DM Mono", monospace;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--cream);
+        font-family: var(--sans);
+        color: var(--black);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      .nav {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 100px;
+        padding: 10px 20px;
+        box-shadow:
+          0 4px 24px rgba(0, 0, 0, 0.08),
+          0 1px 4px rgba(0, 0, 0, 0.04);
+        white-space: nowrap;
+      }
+      .nav-name {
+        font-family: var(--serif);
+        font-size: 16px;
+        color: var(--black);
+        text-decoration: none;
+      }
+      .nav-divider {
+        width: 1px;
+        height: 16px;
+        background: var(--lgray);
+      }
+      .nav-link {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-link:hover {
+        color: var(--black);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        max-width: 680px;
+        margin: 120px auto 0;
+        padding: 0 24px;
+      }
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .hero-hook {
+        font-family: var(--serif);
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 400;
+        line-height: 1.12;
+        color: var(--black);
+        letter-spacing: -0.3px;
+        margin-bottom: 14px;
+      }
+      .hero-sub {
+        font-family: var(--serif);
+        font-size: clamp(18px, 2vw, 24px);
+        font-style: italic;
+        color: var(--accent);
+        line-height: 1.3;
+        margin-bottom: 40px;
+      }
+      .hero-banner {
+        max-width: 460px;
+        border-radius: 14px;
+        overflow: hidden;
+        line-height: 0;
+        margin: 40px auto 0;
+      }
+      .hero-banner img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+      }
+
+      /* ── ARTICLE BODY ── */
+      .article {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 80px 24px 0;
+      }
+
+      .section {
+        margin-bottom: 72px;
+      }
+
+      .section-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--lgray);
+      }
+
+      .body-text {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+      .body-text + .body-text {
+        margin-top: 18px;
+      }
+
+      /* ── BULLET LIST ── */
+      .intro-line {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+        margin-bottom: 28px;
+      }
+      .work-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .work-list li {
+        display: flex;
+        gap: 16px;
+        font-size: 16px;
+        line-height: 1.65;
+        color: #3a3a3a;
+      }
+      .work-list li::before {
+        content: "→";
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+
+      /* ── PROOF CARDS ── */
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 8px;
+        align-items: start;
+      }
+      .proof-col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .proof-card {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1.5px solid #e0dbd2;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        min-width: 0;
+      }
+      .proof-card img {
+        width: calc(100% - 24px);
+        display: block;
+        margin: 12px 12px 0;
+        border-radius: 8px;
+      }
+      .proof-label {
+        padding: 12px 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+        border-top: 1px solid #ede9e2;
+        background: #faf8f5;
+        margin-top: 12px;
+      }
+      .proof-caption {
+        padding: 12px 16px 14px;
+        font-family: var(--sans);
+        font-size: 11px;
+        font-style: italic;
+        color: var(--gray);
+        line-height: 1.55;
+        background: #faf8f5;
+        border-top: 1px solid #ede9e2;
+      }
+
+      /* ── METRICS ── */
+      .metrics-wrap {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--lgray);
+        border: 1.5px solid var(--lgray);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      .metric-item {
+        background: var(--cream);
+        padding: 28px 20px;
+        text-align: center;
+      }
+      .metric-num {
+        font-family: var(--serif);
+        font-size: 28px;
+        font-weight: 400;
+        color: var(--black);
+        margin-bottom: 6px;
+        line-height: 1;
+      }
+      .metric-desc {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+      }
+
+      /* ── LEARNED ── */
+      .learned-text {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+      .learned-text + .learned-text {
+        margin-top: 20px;
+      }
+      .learned-pull {
+        border-left: 3px solid var(--accent);
+        padding-left: 22px;
+        margin: 36px 0;
+        font-family: var(--serif);
+        font-size: 22px;
+        line-height: 1.4;
+        color: var(--black);
+        font-style: italic;
+      }
+
+      /* ── BOTTOM NAV ── */
+      .case-nav {
+        max-width: 680px;
+        margin: 80px auto 0;
+        padding: 32px 24px 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--lgray);
+      }
+      .case-nav a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.2s;
+      }
+      .case-nav a:hover {
+        color: var(--black);
+      }
+      .case-nav .next {
+        text-align: right;
+        flex-direction: row-reverse;
+      }
+      .case-nav-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--lgray);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 640px) {
+        .nav {
+          left: 16px;
+          right: 16px;
+          transform: none;
+          gap: 10px;
+          padding: 10px 14px;
+          justify-content: center;
+        }
+        .nav-divider {
+          display: none;
+        }
+
+        .hero {
+          margin-top: 88px;
+          padding: 0 20px;
+        }
+
+        .proof-grid {
+          grid-template-columns: 1fr;
+        }
+        .metrics-wrap {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .case-nav {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .case-nav a {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <a href="index.html" class="nav-name">Ishaan</a>
+      <div class="nav-divider"></div>
+      <a href="index.html#work" class="nav-link">← Back to work</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">02 · Rapid Racing · F1 Instagram Page</div>
+      <h1 class="hero-hook">20,000 followers. 9 months. ₹0 spent.</h1>
+      <p class="hero-sub">Here's what actually grew it.</p>
+      <div class="hero-banner">
+        <img
+          src="uploads/Rapid Racing ss-d6da6900.png"
+          alt="Rapid Racing Instagram profile"
+        />
+      </div>
+    </section>
+
+    <!-- ARTICLE -->
+    <article class="article">
+      <!-- ORIGIN -->
+      <div class="section">
+        <div class="section-label">The origin</div>
+        <p class="body-text">
+          I started Rapid Racing when I was 17. I'd just gotten into F1 and thought why not make a page about it. I'd be lying if I said I had a content strategy. 
+        <p class="body-text">
+          But as I started posting and the numbers started moving, I decided to actually focus on growing it.
+        </p>
+        </p>
+      </div>
+
+      <!-- WHAT I DID -->
+      <div class="section">
+        <div class="section-label">What I did</div>
+        <ul class="work-list">
+          <li>
+            Posted 3 times a day consistently. The feedback loop was so short I
+            could tell within hours what was working and what wasn't.
+          </li>
+          <li>
+While I started with memes, I pivoted into long-form carousel posts. In 2020-21, Instagram was pushing them hard. 
+A long slide post could keep someone on the app for 2-3 minutes, 
+which the algorithm rewarded with increased reach. So I started doing race breakdowns, historical stories, latest news.          </li>
+          <li>
+            Grew a primarily western audience across US, UK and Europe. F1
+            naturally attracts a higher-income demographic, which made the page
+            commercially valuable beyond just the follower count.
+          </li>
+        </ul>
+      </div>
+
+      <!-- PROOF -->
+      <div class="section">
+        <div class="section-label">Proof</div>
+        <div class="proof-grid">
+          <div class="proof-col">
+            <div class="proof-card">
+              <img
+                src="uploads/Rapid Racing.png"
+                alt="Rapid Racing Instagram profile"
+              />
+              <div class="proof-label">Instagram · Profile</div>
+            </div>
+            <div class="proof-card">
+              <img
+                src="uploads/WhatsApp Image 2026-04-22 at 3.28.53 PM.jpeg"
+                alt="Instagram audience demographics"
+              />
+              <div class="proof-label">Instagram · Audience Demographics</div>
+            </div>
+          </div>
+          <div class="proof-card">
+            <img
+              src="uploads/WhatsApp Image 2026-04-22 at 3.01.05 PM.jpeg"
+              alt="Instagram reach analytics"
+            />
+            <div class="proof-label">
+              Instagram · Reach Analytics · Taken at 11K followers
+            </div>
+            <div class="proof-caption">
+              At 11K followers, posts were reaching nearly 1M accounts a week.
+              This was the moment I realised carousels could be a massive growth
+              lever, so i doubled down.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="section">
+        <div class="section-label">Results</div>
+        <div class="metrics-wrap">
+          <div class="metric-item">
+            <div class="metric-num">20.3K</div>
+            <div class="metric-desc">followers</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">9 mo.</div>
+            <div class="metric-desc">to build</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">₹0</div>
+            <div class="metric-desc">ad spend</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">10%</div>
+            <div class="metric-desc">engagement rate</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">98%</div>
+            <div class="metric-desc">non-follower reach</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">632</div>
+            <div class="metric-desc">posts</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- LEARNINGS -->
+    <article class="article" style="padding-top: 0">
+      <div class="section">
+        <div class="section-label">What I learned</div>
+        <p class="learned-text">
+          Posting three times a day was the best growth education I've had. The feedback loop was so short that I started to understand which ideas were worth 500 likes and which were worth 10,000. You develop a feel for what will spread before you even post it.
+        </p>
+        <p class="learned-text">
+          The other lesson was finding formats nobody in your niche is doing and doubling down on them. Nobody in the F1 space was doing long-form breakdowns. So when people saw them, a huge percentage ended up following..
+        </p>
+      </div>
+    </article>
+
+    <!-- BOTTOM NAV -->
+    <div class="case-nav">
+      <a href="index.html#work">
+        <span>←</span>
+        <span>
+          <span class="case-nav-label">Back</span>
+          All work
+        </span>
+      </a>
+      <a href="go-zero.html" class="next">
+        <span>→</span>
+        <span>
+          <span class="case-nav-label">Next case study</span>
+          Go Zero AI Ad
+        </span>
+      </a>
+    </div>
+  </body>
+</html>

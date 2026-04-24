@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Big Bills — Ishaan Nair</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cream: #f5f1eb;
+        --cream2: #ede9e2;
+        --black: #141414;
+        --gray: #888;
+        --lgray: #d8d4ce;
+        --accent: #c96a3a;
+        --blue: #3d6fce;
+        --serif: "Instrument Serif", serif;
+        --sans: "DM Sans", sans-serif;
+        --mono: "DM Mono", monospace;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--cream);
+        font-family: var(--sans);
+        color: var(--black);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      .nav {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 100px;
+        padding: 10px 20px;
+        box-shadow:
+          0 4px 24px rgba(0, 0, 0, 0.08),
+          0 1px 4px rgba(0, 0, 0, 0.04);
+        white-space: nowrap;
+      }
+      .nav-name {
+        font-family: var(--serif);
+        font-size: 16px;
+        color: var(--black);
+        text-decoration: none;
+      }
+      .nav-divider {
+        width: 1px;
+        height: 16px;
+        background: var(--lgray);
+      }
+      .nav-link {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-link:hover {
+        color: var(--black);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        max-width: 680px;
+        margin: 120px auto 0;
+        padding: 0 24px;
+      }
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .hero-hook {
+        font-family: var(--serif);
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 400;
+        line-height: 1.12;
+        color: var(--black);
+        letter-spacing: -0.3px;
+        margin-bottom: 14px;
+      }
+      .hero-sub {
+        font-family: var(--serif);
+        font-size: clamp(18px, 2vw, 24px);
+        font-style: italic;
+        color: var(--accent);
+        line-height: 1.3;
+        margin-bottom: 40px;
+      }
+      .hero-banner {
+        width: 100%;
+        border-radius: 14px;
+        display: block;
+        overflow: hidden;
+        line-height: 0;
+      }
+      .hero-banner img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+      }
+
+      /* ── ARTICLE BODY ── */
+      .article {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 80px 24px 0;
+      }
+
+      .section {
+        margin-bottom: 72px;
+      }
+
+      .section-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--lgray);
+      }
+
+      .section-heading {
+        font-family: var(--serif);
+        font-size: clamp(26px, 3vw, 34px);
+        font-weight: 400;
+        line-height: 1.15;
+        margin-bottom: 20px;
+        letter-spacing: -0.2px;
+      }
+
+      .body-text {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+      .body-text + .body-text {
+        margin-top: 18px;
+      }
+
+      /* ── BULLET LIST ── */
+      .intro-line {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+        margin-bottom: 28px;
+      }
+      .work-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .work-list li {
+        display: flex;
+        gap: 16px;
+        font-size: 16px;
+        line-height: 1.65;
+        color: #3a3a3a;
+      }
+      .work-list li::before {
+        content: "→";
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+
+      /* ── PROOF CARDS ── */
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 8px;
+      }
+      .proof-card {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1.5px solid #e0dbd2;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        min-width: 0;
+      }
+      .proof-card img {
+        width: 100%;
+        display: block;
+        padding: 16px 16px 0;
+      }
+      .proof-label {
+        padding: 14px 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+        border-top: 1px solid #ede9e2;
+        background: #faf8f5;
+        margin-top: 16px;
+      }
+
+      /* ── METRICS ── */
+      .metrics-wrap {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--lgray);
+        border: 1.5px solid var(--lgray);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      .metric-item {
+        background: var(--cream);
+        padding: 28px 20px;
+        text-align: center;
+      }
+      .metric-num {
+        font-family: var(--serif);
+        font-size: 32px;
+        font-weight: 400;
+        color: var(--black);
+        margin-bottom: 6px;
+        line-height: 1;
+      }
+      .metric-desc {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+      }
+
+      /* ── FULL WIDTH IMAGE BREAK ── */
+      .img-break {
+        margin: 72px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+      }
+      .img-break img {
+        width: 50%;
+        display: block;
+        object-fit: contain;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 12px;
+        object-position: center 30%;
+      }
+
+      /* ── LEARNED ── */
+      .learned-text {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+      .learned-text + .learned-text {
+        margin-top: 20px;
+      }
+      .learned-pull {
+        border-left: 3px solid var(--accent);
+        padding-left: 22px;
+        margin: 36px 0;
+        font-family: var(--serif);
+        font-size: 22px;
+        line-height: 1.4;
+        color: var(--black);
+        font-style: italic;
+      }
+
+      /* ── BOTTOM NAV ── */
+      .case-nav {
+        max-width: 680px;
+        margin: 80px auto 0;
+        padding: 0 24px 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--lgray);
+        padding-top: 32px;
+      }
+      .case-nav a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.2s;
+      }
+      .case-nav a:hover {
+        color: var(--black);
+      }
+      .case-nav .next {
+        text-align: right;
+        flex-direction: row-reverse;
+      }
+      .case-nav-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--lgray);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 640px) {
+        .nav {
+          left: 16px;
+          right: 16px;
+          transform: none;
+          gap: 10px;
+          padding: 10px 14px;
+          justify-content: center;
+        }
+        .nav-divider {
+          display: none;
+        }
+
+        .hero {
+          margin-top: 88px;
+          padding: 0 20px;
+        }
+
+        .proof-grid {
+          grid-template-columns: 1fr;
+        }
+        .metrics-wrap {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .img-break {
+          margin: 48px 0;
+          border-radius: 10px;
+        }
+        .img-break img {
+          width: 75%;
+        }
+        .case-nav {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .case-nav a {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <a href="index.html" class="nav-name">Ishaan</a>
+      <div class="nav-divider"></div>
+      <a href="index.html#work" class="nav-link">← Back to work</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">01 · Big Bills · D2C Clothing Brand</div>
+      <h1 class="hero-hook">I Built a 15L Brand from my bedroom</h1>
+      <p class="hero-sub">Here's how it happened.</p>
+      <div class="hero-banner">
+        <img src="uploads/BANNER 1.png" alt="Big Bills banner" />
+      </div>
+    </section>
+
+    <!-- ARTICLE -->
+    <article class="article">
+      <!-- ORIGIN -->
+      <div class="section">
+        <div class="section-label">The origin</div>
+        <p class="body-text">
+          When I was 17, I ran an
+          <a
+            href="rapid-racing.html"
+            style="
+              color: var(--accent);
+              text-decoration: none;
+              border-bottom: 1px solid currentColor;
+            "
+            >F1 themed Instagram page</a
+          >. One interesting thing I noticed was that while running the page, 
+          I observed that F1 was growing fast in India, but good merchandise 
+          was nearly impossible to find without paying a premium for imports. 
+          Everything was either overpriced or cheap fan
+          merch.
+        </p>
+        <p class="body-text">
+          I had ₹20,000 saved from freelancing. So I decided to go all in and make my own.
+        </p>
+      </div>
+
+      <!-- WHAT I DID -->
+      <div class="section">
+        <div class="section-label">What I did</div>
+        <p class="intro-line">The budget basically wrote the strategy.</p>
+        <ul class="work-list">
+          <li>
+            Most manufacturers I approached had huge MOQs,
+            so I used print-on-demand. No inventory, no dead stock, no upfront
+            risk
+          </li>
+          <li>
+            Once there was consistent demand, I shifted to bulk inventory model to
+            get the cost advantage.
+          </li>
+          <li>
+            Since traditional photoshoots were too expensive, . I taught myself how to make hyper-realistic AI mockups and ran them as performance creatives on Meta. CTRs consistently came in at 1.5-2%
+          </li>
+          <li>
+            Scaled Meta ads to ₹2.79L in total spend at ~4.5X ROAS, managing the
+            full P&L myself — sourcing, pricing, margins, ad spend allocation
+          </li>
+          <li>
+            Once I had capital, I started seeding product to micro-influencers.
+            Their UGC went straight back into paid and lifted ROAS by ~30%
+          </li>
+        </ul>
+      </div>
+
+      <!-- PROOF -->
+      <div class="section">
+        <div class="section-label">Proof</div>
+        <div class="proof-grid">
+          <div class="proof-card">
+            <img src="uploads/bb_proof.png" alt="Shopify dashboard" />
+            <div class="proof-label">Shopify · Total Sales</div>
+          </div>
+          <div class="proof-card">
+            <img src="uploads/meta_ads.png" alt="Meta Ads Manager" />
+            <div class="proof-label">Meta Ads Manager · ROAS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="section">
+        <div class="section-label">Results</div>
+        <div class="metrics-wrap">
+          <div class="metric-item">
+            <div class="metric-num">₹15.4L</div>
+            <div class="metric-desc">revenue</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">₹1300</div>
+            <div class="metric-desc">AOV</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">~4.5X</div>
+            <div class="metric-desc">avg. ROAS</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">1000+</div>
+            <div class="metric-desc">orders</div>
+          </div>
+      </div>
+    </article>
+
+    <!-- FULL WIDTH IMAGE BREAK -->
+    <div style="max-width: 860px; margin: 0 auto; padding: 0 24px">
+      <div class="img-break">
+        <img src="uploads/camel f1 banner.png" alt="Camel Team Lotus tee" />
+      </div>
+    </div>
+
+    <!-- LEARNINGS -->
+    <article class="article" style="padding-top: 0">
+      <div class="section">
+        <div class="section-label">What I learned</div>
+        <p class="learned-text">
+          Most of what I learned came from working with what I had. No shoot
+          budget meant figuring out AI creatives. No agency meant learning Meta
+          from scratch, managing spend, reading what worked and what didn't. 
+      </p>
+        <p class="learned-text">
+Doing everything yourself forces you to understand how it all connects.
+        </p>
+        <p class="learned-text">
+          The one thing I'd do differently is not rely so heavily on performance marketing. 
+          When everything runs through Meta, your entire business depends on an algorithm you have no control over. 
+          I'd invest more in retention, community, offline activations,
+          things that don't stop working the moment you pause spend.
+
+        </p>
+      </div>
+    </article>
+
+    <!-- BOTTOM NAV -->
+    <div class="case-nav">
+      <a href="index.html#work">
+        <span>←</span>
+        <span>
+          <span class="case-nav-label">Back</span>
+          All work
+        </span>
+      </a>
+      <a href="rapid-racing.html" class="next">
+        <span>→</span>
+        <span>
+          <span class="case-nav-label">Next case study</span>
+          Rapid Racing
+        </span>
+      </a>
+    </div>
+  </body>
+</html>

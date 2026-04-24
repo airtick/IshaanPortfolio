@@ -1,0 +1,1531 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ishaan — Growth Marketer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cream: #f5f1eb;
+        --cream2: #ede9e2;
+        --black: #141414;
+        --gray: #888;
+        --lgray: #d8d4ce;
+        --accent: #c96a3a;
+        --blue: #3d6fce;
+        --green: #4a9e6f;
+        --serif: "Instrument Serif", serif;
+        --sans: "DM Sans", sans-serif;
+        --mono: "DM Mono", monospace;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--cream);
+        font-family: var(--sans);
+        color: var(--black);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      .nav {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 100px;
+        padding: 10px 20px;
+        box-shadow:
+          0 4px 24px rgba(0, 0, 0, 0.08),
+          0 1px 4px rgba(0, 0, 0, 0.04);
+        white-space: nowrap;
+      }
+      .nav-name {
+        font-family: var(--serif);
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--black);
+      }
+      .nav-divider {
+        width: 1px;
+        height: 16px;
+        background: var(--lgray);
+      }
+      .nav-links {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .nav-link {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-link:hover {
+        color: var(--black);
+      }
+      .nav-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: #f0faf4;
+        border: 1px solid #b8dfc6;
+        border-radius: 100px;
+        padding: 4px 10px 4px 8px;
+        font-size: 11px;
+        font-weight: 500;
+        color: #2d7a4f;
+        font-family: var(--mono);
+      }
+      .nav-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #34c759;
+        flex-shrink: 0;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4);
+        }
+        50% {
+          opacity: 0.9;
+          box-shadow: 0 0 0 4px rgba(52, 199, 89, 0);
+        }
+      }
+
+      /* ── LAYOUT ── */
+      .page {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding-top: 56px;
+        padding-bottom: 0;
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        grid-template-areas: "left right" "ctas right";
+        column-gap: 32px;
+        align-content: center;
+        min-height: 480px;
+      }
+      .hero-left {
+        grid-area: left;
+      }
+      .hero-ctas {
+        grid-area: ctas;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .hero-headline {
+        font-family: var(--serif);
+        font-size: clamp(44px, 6vw, 62px);
+        font-weight: 400;
+        line-height: 1.04;
+        margin-bottom: 20px;
+        letter-spacing: -0.5px;
+      }
+      .hero-headline em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-sub {
+        font-size: 16px;
+        line-height: 1.65;
+        color: #555;
+        max-width: 360px;
+        margin-bottom: 32px;
+      }
+      .hero-sub strong {
+        color: var(--black);
+        font-weight: 600;
+      }
+      .btn-primary {
+        background: var(--black);
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        padding: 12px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: var(--sans);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-primary:hover {
+        background: #2a2a2a;
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--black);
+        border: 1.5px solid var(--lgray);
+        border-radius: 100px;
+        padding: 11px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: var(--sans);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition:
+          border-color 0.2s,
+          transform 0.15s;
+      }
+      .btn-ghost:hover {
+        border-color: #999;
+        transform: translateY(-1px);
+      }
+      .hero-right {
+        grid-area: right;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .hero-img {
+        width: 100%;
+        max-width: 280px;
+        display: block;
+        filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.08));
+      }
+
+      /* ── TICKER ── */
+      .ticker-wrap {
+        background: var(--black);
+        border-radius: 14px;
+        overflow: hidden;
+        padding: 12px 0;
+        margin: 32px 0;
+        position: relative;
+      }
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: ticker 22s linear infinite;
+      }
+      @keyframes ticker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .ticker-item {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        white-space: nowrap;
+      }
+      .ticker-text {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 0.6px;
+        padding: 0 28px;
+        border-right: 1px solid #333;
+      }
+      .ticker-star {
+        color: var(--accent);
+        padding: 0 4px 0 0;
+      }
+
+      /* ── METRICS ── */
+      .metrics-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5px;
+        background: #c4bfb8;
+        border: 1.5px solid #c4bfb8;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 32px;
+      }
+      .metric-card {
+        background: var(--cream);
+        padding: 22px 16px;
+        text-align: center;
+      }
+      .metric-value {
+        font-family: var(--serif);
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1;
+        margin-bottom: 8px;
+        color: var(--black);
+      }
+      .metric-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      /* ── EXPERIENCE & EDUCATION ── */
+      .exp-card {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 0;
+      }
+      .exp-col {
+        padding: 36px 40px 24px;
+      }
+      .exp-divider {
+        background: var(--lgray);
+      }
+      .exp-sublabel {
+        font-family: var(--mono);
+        font-size: 9px;
+        color: var(--gray);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+      .exp-meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--gray);
+        letter-spacing: 0.3px;
+      }
+      .exp-desc {
+        font-family: var(--sans);
+        font-size: 14px;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      /* ── SCROLL ANIMATIONS ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── BENTO ── */
+      .bento {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+      .bento-card {
+        border-radius: 16px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        cursor: pointer;
+        transition:
+          transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.22s ease;
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+      }
+      .bento-card:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      }
+      .bento-card-full {
+        grid-column: 1 / -1;
+      }
+      .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+      .card-meta {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: inherit;
+        opacity: 0.5;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .card-badge {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 100px;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+      .card-headline {
+        font-family: var(--serif);
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 8px;
+        flex: 1;
+      }
+      .card-headline-lg {
+        font-size: 28px;
+      }
+      .card-outcome {
+        font-size: 13px;
+        opacity: 0.65;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: auto;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        padding: 3px 9px;
+        border-radius: 100px;
+        letter-spacing: 0.2px;
+      }
+      .card-arrow {
+        position: absolute;
+        bottom: 22px;
+        right: 22px;
+        font-size: 18px;
+        font-family: var(--mono);
+        font-style: normal;
+        opacity: 0.25;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .bento-card:hover .card-arrow {
+        opacity: 0.6;
+        transform: translate(2px, -2px);
+      }
+
+      /* ── CTA SECTION ── */
+      .cta-section {
+        text-align: center;
+        padding: 56px 0 64px;
+      }
+      .cta-heading {
+        font-family: var(--serif);
+        font-size: clamp(40px, 6vw, 64px);
+        font-weight: 400;
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+      .cta-sub {
+        font-size: 16px;
+        color: var(--gray);
+        margin-bottom: 36px;
+      }
+      .cta-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-cta-primary {
+        background: var(--black);
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: var(--sans);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-cta-primary:hover {
+        background: #2a2a2a;
+        transform: translateY(-2px);
+      }
+      .btn-cta-ghost {
+        background: transparent;
+        color: var(--black);
+        border: 1.5px solid var(--lgray);
+        border-radius: 100px;
+        padding: 13px 22px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: var(--sans);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition:
+          border-color 0.2s,
+          transform 0.15s;
+      }
+      .btn-cta-ghost:hover {
+        border-color: #999;
+        transform: translateY(-2px);
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        border-top: 1px solid var(--lgray);
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: var(--gray);
+        font-family: var(--mono);
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 640px) {
+        /* Nav: stretch full width, show everything centered */
+        .nav {
+          left: 16px;
+          right: 16px;
+          transform: none;
+          gap: 10px;
+          padding: 10px 14px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .nav-divider {
+          display: none;
+        }
+
+        /* Hero: single column, center-aligned, order: text → image → CTAs */
+        .hero {
+          grid-template-columns: 1fr;
+          grid-template-areas: "left" "right" "ctas";
+          text-align: center;
+          min-height: unset;
+          padding-top: 90px;
+          gap: 20px;
+          align-content: start;
+        }
+        .hero-sub {
+          max-width: 100%;
+        }
+        .hero-right {
+          justify-content: center;
+        }
+        .hero-img {
+          max-width: 220px;
+        }
+        .hero-ctas {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .hero-prev {
+          justify-content: center !important;
+        }
+
+        .metrics-row {
+          display: flex;
+          flex-direction: column;
+          background: none;
+          border: none;
+          border-radius: 0;
+          gap: 0;
+          margin-bottom: 24px;
+        }
+        .metric-card {
+          background: none;
+          padding: 20px 0;
+          text-align: center;
+          border-right: none;
+          border-bottom: 1px solid var(--lgray);
+        }
+        .metric-card:last-child {
+          border-bottom: none;
+        }
+        .metric-value {
+          font-size: 44px;
+          margin-bottom: 6px;
+        }
+        .metric-label {
+          font-size: 10px;
+          letter-spacing: 1.2px;
+        }
+
+        .card-headline-lg {
+          font-size: 22px;
+        }
+
+        .bento-card-full {
+          flex-direction: column-reverse !important;
+        }
+        .card-img-panel {
+          width: 100% !important;
+          height: 200px;
+          border-left: none !important;
+          border-bottom: 1.5px solid #e8e3da;
+          border-top: none;
+        }
+        .bento-row {
+          grid-template-columns: 1fr !important;
+        }
+
+        .exp-card {
+          grid-template-columns: 1fr;
+        }
+        .exp-col {
+          padding: 24px 20px;
+        }
+        .exp-divider {
+          height: 1px;
+          width: 100%;
+        }
+
+        .footer {
+          flex-direction: column;
+          gap: 8px;
+          align-items: center;
+        }
+      }
+
+      /* ── TWEAKS PANEL ── */
+      #tweaks-panel {
+        display: none;
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #fff;
+        border: 1px solid #e5e0d8;
+        border-radius: 16px;
+        padding: 20px;
+        width: 240px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        z-index: 999;
+        font-family: var(--sans);
+      }
+      #tweaks-panel h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .tweak-row {
+        margin-bottom: 12px;
+      }
+      .tweak-label {
+        font-size: 11px;
+        color: var(--gray);
+        margin-bottom: 4px;
+        font-family: var(--mono);
+      }
+      .tweak-row select,
+      .tweak-row input[type="range"] {
+        width: 100%;
+        font-size: 12px;
+      }
+      .tweak-row input[type="color"] {
+        width: 32px;
+        height: 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <span class="nav-name">Ishaan</span>
+      <div class="nav-divider"></div>
+      <div class="nav-links">
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-badge">
+        <div class="nav-dot"></div>
+        Open to roles
+      </div>
+    </nav>
+
+    <!-- PAGE -->
+    <div class="page">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-eyebrow">Growth Hacker · AI-Native · Builder</div>
+          <h1 class="hero-headline">Hi, I'm <em>Ishaan...</em></h1>
+          <p class="hero-sub">
+            In college, I built a <strong>₹15L+ brand.</strong>
+            with ₹20,000. From there I became obsessed with growth.
+          </p>
+          <div
+            class="hero-prev"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              margin-top: -12px;
+              margin-bottom: 0;
+            "
+          >
+            <span
+              style="
+                font-size: 11px;
+                font-family: var(--mono);
+                color: var(--gray);
+                letter-spacing: 0.3px;
+              "
+              >Prev. interned at</span
+            >
+            <img
+              src="uploads/8028.png"
+              alt="Tata Digital"
+              style="height: 13px; filter: grayscale(1); opacity: 0.6"
+            />
+          </div>
+        </div>
+        <div class="hero-right">
+          <img src="uploads/Hero Banner.png" alt="Ishaan" class="hero-img" />
+        </div>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary">Let's talk →</a>
+          <a
+            href="uploads/Ishaan Sandeep Nair Resume.pdf"
+            download="Ishaan Sandeep Nair Resume.pdf"
+            class="btn-ghost"
+            >Download CV</a
+          >
+        </div>
+      </section>
+
+      <!-- TICKER -->
+      <div class="ticker-wrap">
+        <div class="ticker-track" id="ticker">
+          <!-- duplicated for seamless loop -->
+          <div class="ticker-item">
+            <span class="ticker-text"
+              >PERFORMANCE MARKETING <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >ORGANIC CONTENT <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >CONVERSION OPTIMISATION <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >AI CREATIVES <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >GTM <span class="ticker-star">✦</span></span
+            >
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-text"
+              >PERFORMANCE MARKETING <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >ORGANIC CONTENT <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >CONVERSION OPTIMISATION <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >AI CREATIVES <span class="ticker-star">✦</span></span
+            >
+            <span class="ticker-text"
+              >GTM <span class="ticker-star">✦</span></span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- METRICS -->
+      <div class="metrics-row reveal">
+        <div class="metric-card">
+          <div class="metric-value">₹15L+</div>
+          <div class="metric-label">annual revenue</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">4.5X</div>
+          <div class="metric-label">consistent ROAS</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">20K</div>
+          <div class="metric-label">organic followers</div>
+        </div>
+      </div>
+
+      <!-- SECTION TITLE -->
+      <div
+        id="work"
+        style="
+          font-family: var(--mono);
+          font-size: 10px;
+          font-weight: 500;
+          color: var(--gray);
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+        "
+      >
+        Case studies
+        <span
+          style="flex: 1; height: 1px; background: var(--lgray); display: block"
+        ></span>
+      </div>
+
+      <!-- BENTO — Option B editorial mixed grid -->
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 26px;
+          margin-bottom: 26px;
+        "
+      >
+        <!-- Card 01 – Big Bills full width hero -->
+        <a
+          href="big-bills.html"
+          class="bento-card bento-card-full"
+          style="
+            background: #fff;
+            border: 1.5px solid #e8e3da;
+            padding: 0;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: row;
+            color: inherit;
+            text-decoration: none;
+          "
+        >
+          <div
+            style="
+              flex: 1;
+              padding: 28px 28px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <div class="card-top">
+                <div class="card-meta">01 · Big Bills</div>
+                <div
+                  class="card-badge"
+                  style="background: #141414; color: #fff"
+                >
+                  4.5X ROAS
+                </div>
+              </div>
+              <div class="card-headline card-headline-lg">
+                Built a ₹15L clothing brand from my bedroom.
+              </div>
+              <div class="card-outcome">
+                ₹15L+ revenue · 4.5X ROAS · AOV ₹1,300
+              </div>
+            </div>
+            <div class="card-tags">
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >Performance Marketing</span
+              >
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >AI Creatives</span
+              >
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >Influencer Marketing</span
+              >
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >D2C Growth</span
+              >
+            </div>
+          </div>
+          <div
+            class="card-img-panel"
+            style="
+              width: 42%;
+              flex-shrink: 0;
+              background: #f0ede8;
+              border-left: 1.5px solid #e8e3da;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+            "
+          >
+            <img
+              src="uploads/camel f1 banner.png"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: 60% center;
+                display: block;
+              "
+            />
+          </div>
+          <div class="card-arrow" style="color: #fff; opacity: 0.75">↗</div>
+        </a>
+
+        <!-- Row 2: Rapid Racing + Go Zero side by side -->
+        <div
+          class="bento-row"
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px"
+        >
+          <!-- Card 02 – Rapid Racing -->
+          <a
+            href="rapid-racing.html"
+            class="bento-card"
+            style="
+              background: #fff;
+              border: 1.5px solid #e8e3da;
+              padding: 0;
+              overflow: hidden;
+              text-decoration: none;
+              color: inherit;
+              display: block;
+            "
+          >
+            <div
+              style="
+                height: 180px;
+                background: #f0f4fb;
+                border-bottom: 1.5px solid #e8e3da;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+              "
+            >
+              <img
+                src="uploads/Rapid Racing ss-d6da6900.png"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: top;
+                  display: block;
+                "
+              />
+            </div>
+            <div
+              style="
+                padding: 18px 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+              "
+            >
+              <div class="card-top">
+                <div class="card-meta">02 · Rapid Racing</div>
+                <div
+                  class="card-badge"
+                  style="background: #141414; color: #fff"
+                >
+                  20K Followers
+                </div>
+              </div>
+              <div class="card-headline">
+                Grew an Instagram page to 20K followers.
+              </div>
+              <div class="card-outcome">
+                20K followers · 9 months · 100% organic
+              </div>
+              <div class="card-tags">
+                <span
+                  class="tag"
+                  style="
+                    background: #f5f1eb;
+                    border: 1px solid #e0dbd2;
+                    color: #888;
+                  "
+                  >Organic Growth</span
+                >
+                <span
+                  class="tag"
+                  style="
+                    background: #f5f1eb;
+                    border: 1px solid #e0dbd2;
+                    color: #888;
+                  "
+                  >Content Strategy</span
+                >
+                <span
+                  class="tag"
+                  style="
+                    background: #f5f1eb;
+                    border: 1px solid #e0dbd2;
+                    color: #888;
+                  "
+                  >Community Building</span
+                >
+              </div>
+            </div>
+            <div class="card-arrow">↗</div>
+          </a>
+
+          <!-- Card 03 – Go Zero -->
+          <a
+            href="go-zero.html"
+            class="bento-card"
+            style="
+              background: #fff;
+              border: 1.5px solid #e8e3da;
+              padding: 0;
+              overflow: hidden;
+              text-decoration: none;
+              color: inherit;
+              display: block;
+            "
+          >
+            <div
+              style="
+                height: 180px;
+                background: #fff4ef;
+                border-bottom: 1.5px solid #e8e3da;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+              "
+            >
+              <img
+                src="uploads/GO ZERO VIRAL AD.jpg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  display: block;
+                "
+              />
+            </div>
+            <div
+              style="
+                padding: 18px 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+              "
+            >
+              <div class="card-top">
+                <div class="card-meta">03 · Go Zero AI Ad</div>
+                <div
+                  class="card-badge"
+                  style="background: #141414; color: #fff"
+                >
+                  Viral AI Ad
+                </div>
+              </div>
+              <div class="card-headline">
+                Made a viral AI ad for a D2C brand.
+              </div>
+              <div class="card-outcome">
+                50K impressions · 60% avg view duration · ₹0 spend
+              </div>
+              <div class="card-tags">
+                <span
+                  class="tag"
+                  style="
+                    background: #f5f1eb;
+                    border: 1px solid #e0dbd2;
+                    color: #888;
+                  "
+                  >AI Creative</span
+                >
+                <span
+                  class="tag"
+                  style="
+                    background: #f5f1eb;
+                    border: 1px solid #e0dbd2;
+                    color: #888;
+                  "
+                  >Google VEO</span
+                >
+                <span
+                  class="tag"
+                  style="
+                    background: #f5f1eb;
+                    border: 1px solid #e0dbd2;
+                    color: #888;
+                  "
+                  >LinkedIn Content</span
+                >
+              </div>
+            </div>
+            <div class="card-arrow">↗</div>
+          </a>
+        </div>
+
+        <!-- Card 04 – Mudras full width -->
+        <a
+          href="mudras.html"
+          class="bento-card bento-card-full"
+          style="
+            background: #fff;
+            border: 1.5px solid #e8e3da;
+            padding: 0;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+            color: inherit;
+          "
+        >
+          <div
+            style="
+              flex: 1;
+              padding: 28px 28px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <div class="card-top">
+                <div class="card-meta">04 · Mudras with Prem</div>
+                <div
+                  class="card-badge"
+                  style="background: #141414; color: #fff"
+                >
+                  Client Work
+                </div>
+              </div>
+              <div class="card-headline card-headline-lg">
+                Fixed a client's leaking funnel.
+              </div>
+              <div class="card-outcome">3X Conversions· Complete Redesign</div>
+            </div>
+            <div class="card-tags">
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >Conversion Optimisation</span
+              >
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >Funnel Analysis</span
+              >
+              <span
+                class="tag"
+                style="
+                  background: #f5f1eb;
+                  border: 1px solid #e0dbd2;
+                  color: #888;
+                "
+                >GTM</span
+              >
+            </div>
+          </div>
+          <!-- Image flush right -->
+          <div
+            class="card-img-panel"
+            style="
+              width: 42%;
+              flex-shrink: 0;
+              background: #f2f7f4;
+              border-left: 1.5px solid #e8e3da;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+            "
+          >
+            <img
+              src="uploads/MUDRAS .png"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+              "
+            />
+          </div>
+          <div class="card-arrow" style="color: #fff; opacity: 0.75">↗</div>
+        </a>
+      </div>
+      <!-- /bento -->
+
+      <!-- EXPERIENCE & EDUCATION -->
+      <div class="reveal" style="margin-bottom: 32px">
+        <!-- Section label with rule -->
+        <div
+          style="
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+          "
+        >
+          Experience &amp; Education
+          <span
+            style="
+              flex: 1;
+              height: 1px;
+              background: var(--lgray);
+              display: block;
+            "
+          ></span>
+        </div>
+        <!-- Card -->
+        <div class="exp-card">
+          <!-- Internship -->
+          <div class="exp-col">
+            <div class="exp-sublabel">Internship</div>
+            <div style="margin-bottom: 14px">
+              <img
+                src="uploads/8028.png"
+                alt="Tata Digital"
+                style="height: 34px; width: auto; display: block"
+              />
+            </div>
+            <div class="exp-meta" style="margin-bottom: 16px">
+              Marketing Intern &nbsp;·&nbsp; Mumbai &nbsp;·&nbsp; May – Jun 2025
+            </div>
+            <p class="exp-desc">
+              It was fascinating seeing eCommerce work at scale for the first
+              time. On the retention side, I got a close look at how loyalty
+              programs actually work behind the scenes.
+            </p>
+          </div>
+          <!-- Divider -->
+          <div class="exp-divider"></div>
+          <!-- Education -->
+          <div class="exp-col">
+            <div class="exp-sublabel">Education</div>
+            <div
+              style="
+                font-family: var(--serif);
+                font-size: 32px;
+                font-weight: 400;
+                color: var(--black);
+                line-height: 1.1;
+                margin-bottom: 12px;
+              "
+            >
+              CHRIST University
+            </div>
+            <div class="exp-meta" style="margin-bottom: 16px">
+              BBA Hons Business Analytics &nbsp;·&nbsp; Bangalore &nbsp;·&nbsp;
+              May 2026
+            </div>
+            <p class="exp-desc">
+              Outside class I was always running something, editing content for
+              podcasts, building the brand. That's where the interest in
+              marketing really came from.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA + CREDENTIALS -->
+      <section id="contact" class="cta-section reveal">
+        <div
+          style="
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            text-align: left;
+          "
+        >
+          Get in touch
+          <span
+            style="
+              flex: 1;
+              height: 1px;
+              background: var(--lgray);
+              display: block;
+            "
+          ></span>
+        </div>
+        <h2 class="cta-heading">Ready to work together?</h2>
+        <p class="cta-sub">
+          I'm open to growth roles at fast-growing startups.
+        </p>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+          "
+        >
+          <span
+            style="
+              font-size: 15px;
+              color: var(--gray);
+              font-family: var(--mono);
+              letter-spacing: 0.3px;
+            "
+            >ishaan0209@gmail.com</span
+          >
+          <div style="display: flex; gap: 10px">
+            <a
+              href="uploads/Ishaan Sandeep Nair Resume.pdf"
+              download="Ishaan_Nair_Resume.pdf"
+              class="btn-cta-ghost"
+              >Download CV</a
+            >
+            <a
+              href="https://www.linkedin.com/in/ishaan-nair-294aa4210/"
+              target="_blank"
+              rel="noopener"
+              class="btn-cta-ghost"
+              >LinkedIn ↗</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <span style="font-family: var(--mono); font-size: 11px; color: #bbb"
+          >Ishaan Nair</span
+        >
+        <span style="color: #ccc; font-size: 11px; font-family: var(--mono)"
+          >Built with ♥ Claude</span
+        >
+      </footer>
+    </div>
+    <!-- /page -->
+
+    <!-- TWEAKS -->
+    <div id="tweaks-panel">
+      <h3>Tweaks</h3>
+      <div class="tweak-row">
+        <div class="tweak-label">Accent color</div>
+        <input
+          type="color"
+          id="tw-accent"
+          value="#c96a3a"
+          oninput="applyTweak('accent', this.value)"
+        />
+      </div>
+      <div class="tweak-row">
+        <div class="tweak-label">Hero font size</div>
+        <input
+          type="range"
+          id="tw-herosize"
+          min="36"
+          max="80"
+          value="62"
+          oninput="applyTweak('heroSize', this.value)"
+        />
+      </div>
+      <div class="tweak-row">
+        <div class="tweak-label">Ticker speed</div>
+        <input
+          type="range"
+          id="tw-tickerspeed"
+          min="8"
+          max="40"
+          value="22"
+          oninput="applyTweak('tickerSpeed', this.value)"
+        />
+      </div>
+      <div class="tweak-row">
+        <div class="tweak-label">Background</div>
+        <select onchange="applyTweak('bg', this.value)">
+          <option value="#f5f1eb">Warm cream</option>
+          <option value="#fafafa">White</option>
+          <option value="#f0f4fb">Cool blue-white</option>
+          <option value="#141414">Dark mode</option>
+        </select>
+      </div>
+    </div>
+
+    <script>
+      const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
+        accent: "#c96a3a",
+        heroSize: 66,
+        tickerSpeed: 24,
+        bg: "#f5f1eb",
+      }; /*EDITMODE-END*/
+
+      function applyTweak(key, val) {
+        const edits = {};
+        edits[key] =
+          key === "heroSize" || key === "tickerSpeed" ? Number(val) : val;
+        if (key === "accent") {
+          document.documentElement.style.setProperty("--accent", val);
+        }
+        if (key === "heroSize") {
+          document.querySelector(".hero-headline").style.fontSize = val + "px";
+        }
+        if (key === "tickerSpeed") {
+          document.querySelector(".ticker-track").style.animationDuration =
+            val + "s";
+        }
+        if (key === "bg") {
+          document.documentElement.style.setProperty("--cream", val);
+          document.body.style.background = val;
+          if (val === "#141414") {
+            document.body.style.color = "#f0ede8";
+            document
+              .querySelectorAll(".nav")
+              .forEach((n) => (n.style.background = "rgba(30,30,30,0.8)"));
+          } else {
+            document.body.style.color = "#141414";
+            document
+              .querySelectorAll(".nav")
+              .forEach((n) => (n.style.background = "rgba(255,255,255,0.72)"));
+          }
+        }
+        window.parent.postMessage({ type: "__edit_mode_set_keys", edits }, "*");
+      }
+
+      // Apply saved defaults
+      (function () {
+        const d = TWEAK_DEFAULTS;
+        document.documentElement.style.setProperty("--accent", d.accent);
+        document.body.style.background = d.bg;
+        document.querySelector(".ticker-track").style.animationDuration =
+          d.tickerSpeed + "s";
+        document.getElementById("tw-accent").value = d.accent;
+        document.getElementById("tw-herosize").value = d.heroSize;
+        document.getElementById("tw-tickerspeed").value = d.tickerSpeed;
+      })();
+
+      // Tweaks host protocol
+      window.addEventListener("message", (e) => {
+        if (e.data?.type === "__activate_edit_mode")
+          document.getElementById("tweaks-panel").style.display = "block";
+        if (e.data?.type === "__deactivate_edit_mode")
+          document.getElementById("tweaks-panel").style.display = "none";
+      });
+      window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+
+      // ── Fade-drift reveal on scroll ──
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              revealObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -30px 0px" },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      // Persist scroll position
+      window.addEventListener("scroll", () =>
+        localStorage.setItem("portfolio-scroll", window.scrollY),
+      );
+      window.addEventListener("load", () => {
+        const s = localStorage.getItem("portfolio-scroll");
+        if (s) window.scrollTo(0, parseInt(s));
+      });
+    </script>
+  </body>
+</html>

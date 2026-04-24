@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mudras with Prem — Ishaan Nair</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cream: #f5f1eb;
+        --cream2: #ede9e2;
+        --black: #141414;
+        --gray: #888;
+        --lgray: #d8d4ce;
+        --accent: #c96a3a;
+        --serif: "Instrument Serif", serif;
+        --sans: "DM Sans", sans-serif;
+        --mono: "DM Mono", monospace;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--cream);
+        font-family: var(--sans);
+        color: var(--black);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      .nav {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 100px;
+        padding: 10px 20px;
+        box-shadow:
+          0 4px 24px rgba(0, 0, 0, 0.08),
+          0 1px 4px rgba(0, 0, 0, 0.04);
+        white-space: nowrap;
+      }
+      .nav-name {
+        font-family: var(--serif);
+        font-size: 16px;
+        color: var(--black);
+        text-decoration: none;
+      }
+      .nav-divider {
+        width: 1px;
+        height: 16px;
+        background: var(--lgray);
+      }
+      .nav-link {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-link:hover {
+        color: var(--black);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        max-width: 680px;
+        margin: 120px auto 0;
+        padding: 0 24px;
+      }
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .hero-hook {
+        font-family: var(--serif);
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 400;
+        line-height: 1.12;
+        color: var(--black);
+        letter-spacing: -0.3px;
+        margin-bottom: 14px;
+      }
+      .hero-sub {
+        font-family: var(--serif);
+        font-size: clamp(18px, 2vw, 24px);
+        font-style: italic;
+        color: var(--accent);
+        line-height: 1.3;
+        margin-bottom: 40px;
+      }
+      .hero-banner {
+        width: 100%;
+        border-radius: 14px;
+        overflow: hidden;
+        line-height: 0;
+      }
+      .hero-banner img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+      }
+
+      /* ── ARTICLE BODY ── */
+      .article {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 80px 24px 0;
+      }
+
+      .section {
+        margin-bottom: 72px;
+      }
+
+      .section-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--gray);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--lgray);
+      }
+
+      .body-text {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+      .body-text + .body-text {
+        margin-top: 18px;
+      }
+
+      /* ── DIAGNOSIS BLOCKS ── */
+      .diagnosis-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 4px;
+      }
+      .diagnosis-item {
+        border-left: 3px solid var(--lgray);
+        padding-left: 20px;
+      }
+      .diagnosis-item strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .diagnosis-item p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #3a3a3a;
+      }
+
+      /* ── BULLET LIST ── */
+      .work-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .work-list li {
+        display: flex;
+        gap: 16px;
+        font-size: 16px;
+        line-height: 1.65;
+        color: #3a3a3a;
+      }
+      .work-list li::before {
+        content: "→";
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+
+      /* ── PROTO IMAGE ── */
+      .proto-wrap {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1.5px solid #e0dbd2;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      .proto-wrap img {
+        width: 100%;
+        display: block;
+      }
+
+      /* ── SNAPSHOT (before/after) ── */
+      .snapshot-wrap {
+        max-width: 480px;
+        margin: 0 auto;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1.5px solid #e0dbd2;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      .snapshot-wrap .snapshot-img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+      .snapshot-wrap .proto-label {
+        border-top: 1px solid #ede9e2;
+        margin-top: 0;
+      }
+      .proto-label {
+        padding: 14px 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+        border-top: 1px solid #ede9e2;
+        background: #faf8f5;
+      }
+      .proto-caption {
+        padding: 12px 16px 14px;
+        font-family: var(--sans);
+        font-size: 12px;
+        font-style: italic;
+        color: var(--gray);
+        line-height: 1.6;
+        background: #faf8f5;
+        border-top: 1px solid #ede9e2;
+      }
+
+      /* ── PROOF CARDS ── */
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 8px;
+        align-items: start;
+      }
+      .proof-card {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1.5px solid #e0dbd2;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        min-width: 0;
+      }
+      .proof-card img {
+        width: calc(100% - 24px);
+        display: block;
+        margin: 12px 12px 0;
+        border-radius: 8px;
+      }
+      .proof-label {
+        padding: 12px 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+        border-top: 1px solid #ede9e2;
+        background: #faf8f5;
+        margin-top: 12px;
+      }
+
+      /* ── METRICS ── */
+      .metrics-wrap {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--lgray);
+        border: 1.5px solid var(--lgray);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      .metric-item {
+        background: var(--cream);
+        padding: 28px 20px;
+        text-align: center;
+      }
+      .metric-num {
+        font-family: var(--serif);
+        font-size: 28px;
+        font-weight: 400;
+        color: var(--black);
+        margin-bottom: 6px;
+        line-height: 1;
+      }
+      .metric-desc {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 0.4px;
+      }
+
+      /* ── LEARNED ── */
+      .learned-text {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+      .learned-text + .learned-text {
+        margin-top: 20px;
+      }
+      .learned-pull {
+        border-left: 3px solid var(--accent);
+        padding-left: 22px;
+        margin: 36px 0;
+        font-family: var(--serif);
+        font-size: 22px;
+        line-height: 1.4;
+        color: var(--black);
+        font-style: italic;
+      }
+
+      /* ── BOTTOM NAV ── */
+      .case-nav {
+        max-width: 680px;
+        margin: 80px auto 0;
+        padding: 32px 24px 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--lgray);
+      }
+      .case-nav a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.2s;
+      }
+      .case-nav a:hover {
+        color: var(--black);
+      }
+      .case-nav .prev {
+        flex-direction: row;
+      }
+      .case-nav-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--lgray);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 640px) {
+        .nav {
+          left: 16px;
+          right: 16px;
+          transform: none;
+          gap: 10px;
+          padding: 10px 14px;
+          justify-content: center;
+        }
+        .nav-divider {
+          display: none;
+        }
+
+        .hero {
+          margin-top: 88px;
+          padding: 0 20px;
+        }
+
+        .proof-grid {
+          grid-template-columns: 1fr;
+        }
+        .metrics-wrap {
+          grid-template-columns: 1fr 1fr;
+        }
+        .metrics-wrap .metric-item:last-child:nth-child(odd) {
+          grid-column: span 2;
+        }
+        .case-nav {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .case-nav a {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <a href="index.html" class="nav-name">Ishaan</a>
+      <div class="nav-divider"></div>
+      <a href="index.html#work" class="nav-link">← Back to work</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">04 · Mudras with Prem · Client Project</div>
+      <h1 class="hero-hook">
+        The site had traffic.<br />People just weren't converting.
+      </h1>
+      <p class="hero-sub">My job was to figure out why and fix it.</p>
+      <div class="hero-banner">
+        <img src="uploads/MWP BAnner.png" alt="Mudras with Prem website" />
+      </div>
+    </section>
+
+    <!-- ARTICLE -->
+    <article class="article">
+      <!-- THE BRIEF -->
+      <div class="section">
+        <div class="section-label">The brief</div>
+        <p class="body-text">
+          Dr. Premlata Haralalka has been teaching Mudras, Reiki, and Pranic
+          Healing for 25 years. 50,000+ students across 15 countries. Someone I
+          worked with at my Tata Digital internship asked me to help redesign
+          their website.The site had traffic but not enought people were booking
+          courses.
+        </p>
+      </div>
+
+      <!-- THE DIAGNOSIS -->
+      <div class="section">
+        <div class="section-label">The diagnosis</div>
+        <p class="body-text">
+          First thing I did was map the session flow before touching anything.
+          Where people were entering, where they were dropping, what they were
+          doing in between. That told me which pages actually mattered and where
+          to focus first.
+        </p>
+        <p class="body-text">
+          58% of sessions were starting on the homepage but most visitors were
+          detouring to the About page before ever looking at Courses. This was
+          hurting conversions. People were actively searching for a reason to
+          trust the instructor before they'd consider buying. The homepage
+          wasn't giving it to them.
+        </p>
+        <p class="body-text">
+          The second problem was navigation. Visitors couldn't easily find or
+          understand what courses were on offer.
+        </p>
+        <p class="body-text">Two problems. Both fixable.</p>
+      </div>
+
+      <!-- WHAT I DID -->
+      <div class="section">
+        <div class="section-label">What I did</div>
+        <ul class="work-list">
+          <li>
+            Pulled session flow data from Wix Analytics to map exactly where
+            visitors were dropping and why before touching anything
+          </li>
+          <li>
+            Used AI to rapidly prototype 3 homepage concepts — what normally
+            takes a designer weeks took hours. The client could see real options
+            and make a decision instead of reacting to one concept
+          </li>
+          <li>
+            Rebuilt the homepage hierarchy — testimonials and instructor
+            credibility moved above the fold to address the trust deficit before
+            anything else
+          </li>
+          <li>
+            Rewrote key headlines and CTAs to speak directly to someone who'd
+            never heard of Mudras or Pranic Healing. The old copy assumed
+            familiarity. Most visitors didn't have it
+          </li>
+          <li>
+            Analysed 200+ visitor enquiries using AI to find the 5 most common
+            questions, then turned them into an FAQ section on the page.
+            Objections addressed before they became drop-offs
+          </li>
+          <li>
+            Redesigned course navigation so visitors could find and understand
+            every offering without friction
+          </li>
+        </ul>
+      </div>
+
+      <!-- BEFORE -->
+      <div class="section">
+        <div class="section-label">Before</div>
+        <div class="snapshot-wrap">
+          <img
+            src="uploads/MWP MAC.png"
+            alt="Old homepage before redesign"
+            class="snapshot-img"
+          />
+          <div class="proto-label">Old Homepage · Before Redesign</div>
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="section">
+        <div class="section-label">After</div>
+        <div class="snapshot-wrap">
+          <img
+            src="uploads/MWP trust.png"
+            alt="Final homepage with trust signals"
+            style="width: 100%; display: block; height: auto"
+          />
+          <div class="proto-label">Final Homepage · Trust Signals Added</div>
+        </div>
+        <div style="text-align: center; margin-top: 16px">
+          <a
+            href="https://www.mudraswithprem.com/"
+            target="_blank"
+            rel="noopener"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+              font-family: var(--mono);
+              font-size: 13px;
+              font-weight: 500;
+              color: var(--accent);
+              text-decoration: none;
+              letter-spacing: 0.3px;
+              border-bottom: 1px solid currentColor;
+              padding-bottom: 1px;
+            "
+            >View the final site ↗</a
+          >
+        </div>
+      </div>
+
+      <!-- PROOF -->
+      <div class="section">
+        <div class="section-label">Proof</div>
+        <div class="proof-grid" style="grid-template-columns: 1fr">
+          <div class="proof-card">
+            <img src="uploads/MWP Stats.png" alt="Wix Analytics key stats" />
+            <div class="proof-label">
+              Wix Analytics · Key Stats vs Mental Health Sites Worldwide
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="section">
+        <div class="section-label">Results</div>
+        <div class="metrics-wrap">
+          <div class="metric-item">
+            <div class="metric-num">3.8%</div>
+            <div class="metric-desc">conversion rate</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">4m 41s</div>
+            <div class="metric-desc">avg session duration</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">28%</div>
+            <div class="metric-desc">returning visitors · top 5% globally</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- LEARNINGS -->
+    <article class="article" style="padding-top: 0">
+      <div class="section">
+        <div class="section-label">What I learned</div>
+        <p class="learned-text">
+          The biggest learning was how much the data already tells you if you
+          actually look at it. The About page detour was sitting right there in
+          the session flow. That one insight, that people needed trust signals
+          before they'd look at anything else, shaped everything I did on the
+          homepage.
+        </p>
+        <p class="learned-text">
+          The other thing that stuck with me was how fast AI let me move on the
+          design side. Having multiple homepage concepts ready in minutes meant
+          I wasn't going back and forth on layouts for weeks. It freed me up to
+          actually focus on the growth side of things, building out email
+          automations, thinking through the full funnel, figuring out what
+          happens after someone lands on the page.
+        </p>
+      </div>
+    </article>
+
+    <!-- BOTTOM NAV -->
+    <div class="case-nav">
+      <a href="index.html#work">
+        <span>←</span>
+        <span>
+          <span class="case-nav-label">Back</span>
+          All work
+        </span>
+      </a>
+      <a href="go-zero.html" class="prev">
+        <span>←</span>
+        <span>
+          <span class="case-nav-label">Previous</span>
+          Go Zero AI Ad
+        </span>
+      </a>
+    </div>
+  </body>
+</html>
