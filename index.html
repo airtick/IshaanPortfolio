@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35L361G0JJ"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-35L361G0JJ"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-35L361G0JJ');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-35L361G0JJ");
     </script>
     <title>Ishaan — Growth Marketer</title>
     <link
@@ -964,7 +969,9 @@
               "
             />
           </div>
-          <div class="card-arrow" style="color: #fff; opacity: 0.75">↗&#xFE0E;</div>
+          <div class="card-arrow" style="color: #fff; opacity: 0.75">
+            ↗&#xFE0E;
+          </div>
         </a>
 
         <!-- Row 2: Rapid Racing + Go Zero side by side -->
@@ -1194,7 +1201,9 @@
               <div class="card-headline card-headline-lg">
                 Fixed a client's leaking funnel.
               </div>
-              <div class="card-outcome">3X Conversions· Complete Redesign</div>
+              <div class="card-outcome">
+                3X Conversions · Complete Website Redesign
+              </div>
             </div>
             <div class="card-tags">
               <span
@@ -1533,15 +1542,6 @@
       document
         .querySelectorAll(".reveal")
         .forEach((el) => revealObserver.observe(el));
-
-      // Persist scroll position
-      window.addEventListener("scroll", () =>
-        localStorage.setItem("portfolio-scroll", window.scrollY),
-      );
-      window.addEventListener("load", () => {
-        const s = localStorage.getItem("portfolio-scroll");
-        if (s) window.scrollTo(0, parseInt(s));
-      });
     </script>
   </body>
 </html>
