@@ -297,17 +297,15 @@
       .metrics-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.5px;
-        background: #c4bfb8;
-        border: 1.5px solid #c4bfb8;
-        border-radius: 14px;
-        overflow: hidden;
         margin-bottom: 32px;
       }
       .metric-card {
-        background: var(--cream);
-        padding: 22px 16px;
+        padding: 16px 0;
         text-align: center;
+        border-right: 1px solid var(--lgray);
+      }
+      .metric-card:last-child {
+        border-right: none;
       }
       .metric-value {
         font-family: var(--serif);
@@ -733,8 +731,9 @@
           <div class="hero-eyebrow">Growth Hacker · AI-Native · Builder</div>
           <h1 class="hero-headline">Hi, I'm <em>Ishaan...</em></h1>
           <p class="hero-sub">
-            In college, I built a <strong>₹15L+ brand.</strong>
-            with ₹20,000. From there I became obsessed with growth.
+            In college, I grew a clothing brands to
+            <strong>₹15L+ revenue.</strong>
+            From there I became obsessed with buidling and scaling brands.
           </p>
           <div
             class="hero-prev"
@@ -818,6 +817,10 @@
       </div>
 
       <!-- METRICS -->
+      <div style="font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        Key Achievements
+        <span style="flex: 1; height: 1px; background: var(--lgray); display: block;"></span>
+      </div>
       <div class="metrics-row reveal">
         <div class="metric-card">
           <div class="metric-value">₹15L+</div>
